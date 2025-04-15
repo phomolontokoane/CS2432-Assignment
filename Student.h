@@ -1,0 +1,35 @@
+#ifndef STUDENTS_H
+#define STUDENTS_H
+
+#include "Person.h"
+#include <iostream>
+
+using namespace std;
+
+class Student: public Person
+{
+private:
+    int std_no;
+    string faculty;
+public:
+    Student(string, string, int, string);
+
+    // Getters and Setters
+
+    int getStdNo();
+    string getFaculty();
+
+    void setStdNo(int);
+    void setFaculty(string);
+};
+
+Student::Student(string Name, string Surname, int id, string Faculty)
+: Person(Name, Surname), std_no(id), faculty(Faculty) {}
+
+int Student::getStdNo() { return std_no; }
+string Student::getFaculty() { return faculty; }
+
+void Student::setStdNo(int id) { std_no = id; }
+void Student::setFaculty(string Faculty) { faculty = Faculty; }
+
+#endif

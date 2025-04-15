@@ -1,14 +1,13 @@
 #include <iostream>
-#include "Manager.h"
+#include "Student.h"
 
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    Manager m1("The man", "Vandam", 69, 10000);    
-    Manager m2 = m1;
+    Student s1("Muhfaka", "Fuka", 6969, "Money");
 
-    // cout << m2.getName();
+    cout << s1.getStdNo();
 
     return 0;
 }
