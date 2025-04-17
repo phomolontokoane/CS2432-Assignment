@@ -13,6 +13,7 @@ private:
     string faculty;
 public:
     Student(string, string, int, string);
+    Student(Student&);
 
     // Getters and Setters
 
@@ -21,6 +22,8 @@ public:
 
     void setStdNo(int);
     void setFaculty(string);
+
+    Student& operator=(Student&);
 };
 
 Student::Student(string Name, string Surname, int id, string Faculty)
@@ -31,5 +34,16 @@ string Student::getFaculty() { return faculty; }
 
 void Student::setStdNo(int id) { std_no = id; }
 void Student::setFaculty(string Faculty) { faculty = Faculty; }
+
+Student& Student::operator=(Student &S)
+{
+    if (this != &S) {
+        setName(S.getName());
+        setSurname(S.getSurname());
+        std_no = S.std_no;
+        faculty = S.faculty;
+    }
+    return *this;
+}
 
 #endif

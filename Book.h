@@ -15,6 +15,7 @@ private:
 public:
     // Constructor
     Book(string, string, string, int);
+    Book(Book&);
 
     // Getters and Setters
 
@@ -31,6 +32,10 @@ public:
 
 Book::Book(string Title, string Author, string Subject, int Num)
  : title(Title), author(Author), subject(subject), no_copies(Num) {}
+
+Book::Book(Book &B): title(B.title), author(B.author), subject(B.subject), no_copies(B.no_copies)
+{
+}
 
 void Book::setTitle(string Title) { title = Title; }
 void Book::setAuthor(string Author) { author = Author; }
