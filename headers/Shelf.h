@@ -7,23 +7,23 @@ class Shelf
 {
 private:
     int id;
-    Book* books;
+    Book *books;
     int numBooks;
+
 public:
-    Shelf();
+    Shelf(int);
     ~Shelf();
 
     void setId(int);
-    void setBooks(Book*);
+    void setBooks(Book *);
     void setNumBooks(int);
 
     int getId();
-    Book* getBooks();
+    Book *getBooks();
     int getNumBookks();
 };
 
-Shelf::Shelf(/* args */): books(nullptr), numBooks(0) { }
-
+Shelf::Shelf(int Id) : books(nullptr), numBooks(0), id(Id) {}
 Shelf::~Shelf()
 {
     delete[] books;
@@ -31,7 +31,7 @@ Shelf::~Shelf()
 }
 
 void Shelf::setId(int Id) { id = Id; }
-void Shelf::setBooks(Book* Books) { books = Books; }
+void Shelf::setBooks(Book *Books) { books = Books; }
 void Shelf::setNumBooks(int Num) { numBooks = Num; }
 
 int Shelf::getId() { return id; }

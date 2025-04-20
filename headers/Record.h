@@ -2,25 +2,10 @@
 #define RECORD_H
 
 #include <iostream>
+
 #include "Student.h"
 #include "Book.h"
-
-class Date {
-    private:
-        int year, month, day;
-    public:
-        Date(int,int,int);
-        Date(Date&);
-};
-
-Date::Date(int year, int month, int day)
-{
-    this->year = year;
-    this->month = month;
-    this->day = day;
-}
-
-Date::Date(Date &D): year(D.year), month(D.month), day(D.day) { }
+#include "Date.h"
 
 class Record
 {

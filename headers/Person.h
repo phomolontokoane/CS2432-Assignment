@@ -2,7 +2,7 @@
 #define PERSON_H
 
 #include <iostream>
-using namespace std;
+using std::string;
 
 class Person
 {

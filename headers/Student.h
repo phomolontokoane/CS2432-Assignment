@@ -2,9 +2,6 @@
 #define STUDENTS_H
 
 #include "Person.h"
-#include <iostream>
-
-using namespace std;
 
 class Student: public Person
 {
@@ -28,6 +25,12 @@ public:
 
 Student::Student(string Name, string Surname, int id, string Faculty)
 : Person(Name, Surname), std_no(id), faculty(Faculty) {}
+
+Student::Student(Student &S): Person(S.getName(), S.getSurname())
+{
+    std_no = S.std_no;
+    faculty = S.faculty;
+}
 
 int Student::getStdNo() { return std_no; }
 string Student::getFaculty() { return faculty; }

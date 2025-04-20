@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include "Person.h"
-using namespace std;
+using std::string;
 
-class Manager: public Person
+class Manager : public Person
 {
 private:
     int emply_num;
@@ -13,7 +13,7 @@ private:
 
 public:
     Manager(string, string, int, int);
-    Manager(Manager&);
+    Manager(Manager &);
 
     // Getters and Setters
 
@@ -24,12 +24,11 @@ public:
     void setRank(int);
 
     // Operators
-    Manager& operator=(Manager&);
+    Manager &operator=(Manager &);
 };
 
 Manager::Manager(string Name, string Surname, int id, int Rank)
- : Person(Name, Surname), emply_num(id), rank(Rank) { }
-
+    : Person(Name, Surname), emply_num(id), rank(Rank) {}
 
 int Manager::getId() { return emply_num; }
 int Manager::getRank() { return rank; }
@@ -37,9 +36,10 @@ int Manager::getRank() { return rank; }
 void Manager::setId(int id) { emply_num = id; }
 void Manager::setRank(int Rank) { rank = Rank; }
 
-Manager& Manager::operator=(Manager &M)
+Manager &Manager::operator=(Manager &M)
 {
-    if (this != &M) {
+    if (this != &M)
+    {
         setName(M.getName());
         setSurname(M.getSurname());
         emply_num = M.emply_num;
