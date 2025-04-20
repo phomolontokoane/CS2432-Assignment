@@ -37,7 +37,7 @@ public:
 
 // Constructor implementation
 Book::Book(int Id, string Title, string Author, string Subject, int Num)
-    : id(Id), title(Title), author(Author), subject(subject), no_copies(Num) {}
+    : id(Id), title(Title), author(Author), subject(Subject), no_copies(Num) {}
 
 Book::Book(Book &B)
     : id(B.id), title(B.title), author(B.author), subject(B.subject), no_copies(B.no_copies) {}

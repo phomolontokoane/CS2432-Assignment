@@ -13,7 +13,6 @@ private:
 
 public:
     Manager(string, string, int, int);
-    Manager(Manager &);
 
     // Getters and Setters
 
