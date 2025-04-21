@@ -1,41 +1,37 @@
 #ifndef SHELF_H
 #define SHELF_H
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 #include "Book.h"
+#include "LinkedList.h"
 
 class Shelf
 {
 private:
     int id;
-    Book *books;
-    int numBooks;
+    LinkedList<Book> books; // Use LinkedList for books
 
 public:
     Shelf(int);
     ~Shelf();
 
     void setId(int);
-    void setBooks(Book *);
-    void setNumBooks(int);
+    void addBook(const Book &); // Add a book to the shelf
 
     int getId();
-    Book *getBooks();
-    int getNumBookks();
+    LinkedList<Book> &getBooks(); // Return reference to books
+    int getNumBooks();            // Get the number of books
 };
 
-Shelf::Shelf(int Id) : books(nullptr), numBooks(0), id(Id) {}
-Shelf::~Shelf()
-{
-    delete[] books;
-    books = nullptr;
-}
+Shelf::Shelf(int Id) : id(Id) {}
+Shelf::~Shelf() {}
 
 void Shelf::setId(int Id) { id = Id; }
-void Shelf::setBooks(Book *Books) { books = Books; }
-void Shelf::setNumBooks(int Num) { numBooks = Num; }
+void Shelf::addBook(const Book &book) { books.add(book); }
 
 int Shelf::getId() { return id; }
-Book *Shelf::getBooks() { return books; }
-int Shelf::getNumBookks() { return numBooks; }
+LinkedList<Book> &Shelf::getBooks() { return books; }
+int Shelf::getNumBooks() { return books.getSize(); }
 
 #endif
