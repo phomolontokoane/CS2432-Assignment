@@ -1,39 +1,49 @@
-#ifndef MANGER_H
-#define MANGER_H
+#ifndef MANAGER_H
+#define MANAGER_H
 
 #include <iostream>
 #include "Person.h"
 using std::string;
+using std::cout;
 
 class Manager : public Person
 {
 private:
-    int emply_num;
+    string emply_num;
     int rank;
 
 public:
-    Manager(string, string, int, int);
+    Manager(string, string, string, int);
 
     // Getters and Setters
-
-    int getId();
+    string getId();
     int getRank();
 
-    void setId(int);
+    void setId(string);
     void setRank(int);
+
+    // Display function
+    void display();
 
     // Operators
     Manager &operator=(Manager &);
 };
 
-Manager::Manager(string Name, string Surname, int id, int Rank)
+Manager::Manager(string Name, string Surname, string id, int Rank)
     : Person(Name, Surname), emply_num(id), rank(Rank) {}
 
-int Manager::getId() { return emply_num; }
+string Manager::getId() { return emply_num; }
 int Manager::getRank() { return rank; }
 
-void Manager::setId(int id) { emply_num = id; }
+void Manager::setId(string id) { emply_num = id; }
 void Manager::setRank(int Rank) { rank = Rank; }
+
+void Manager::display()
+{
+    cout << "Manager Name: " << getName() << " " << getSurname() << "\n";
+    cout << "Employee ID: " << emply_num << "\n";
+    cout << "Rank: " << rank << "\n\n";
+}
 
 Manager &Manager::operator=(Manager &M)
 {

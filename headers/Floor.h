@@ -25,6 +25,7 @@ public:
     void setFloorNum(int);
     void setManager(Manager &);
     void addShelf(const Shelf &); // Add a shelf to the floor
+    void display(); // Display floor details
 };
 
 Floor::Floor(int id, Manager &M) : f_num(id), manager(M) {}
@@ -38,5 +39,17 @@ Manager Floor::getManager() { return manager; }
 void Floor::setFloorNum(int id) { f_num = id; }
 void Floor::setManager(Manager &M) { manager = M; }
 void Floor::addShelf(const Shelf &shelf) { shelves.add(shelf); }
+
+void Floor::display()
+{
+    std::cout << "Floor Number: " << f_num << "\n";
+    manager.display();
+    std::cout << "Shelves on Floor:\n";
+    for (int i = 0; i < shelves.getSize(); i++) {
+        std::cout << "  ";
+        shelves[i].display();
+        std::cout << "\n";
+    }
+}
 
 #endif

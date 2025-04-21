@@ -24,15 +24,19 @@ public:
     void setTitle(string);
     void setAuthor(string);
     void setSubject(string);
-    void setNum(int);
+    void setCopies(int);
 
     string getTitle();
     string getAuthor();
     string getSubjuct();
-    int getNum();
+    int getCopies();
+    int getId();
 
     // Assignment operator overload
     Book &operator=(Book &B);
+
+    // Display function
+    void display();
 };
 
 // Constructor implementation
@@ -48,12 +52,14 @@ void Book::setId(int Id) { id = Id; }
 void Book::setTitle(string Title) { title = Title; }
 void Book::setAuthor(string Author) { author = Author; }
 void Book::setSubject(string Subject) { subject = Subject; }
-void Book::setNum(int Num) { no_copies = Num; }
+void Book::setCopies(int Num) { no_copies = Num; }
 
 string Book::getTitle() { return title; }
 string Book::getAuthor() { return author; }
 string Book::getSubjuct() { return subject; }
-int Book::getNum() { return no_copies; }
+int Book::getCopies() { return no_copies; }
+
+int Book::getId() { return id; }
 
 // Assignment operator overload
 Book& Book::operator=(Book &B)
@@ -66,6 +72,16 @@ Book& Book::operator=(Book &B)
         no_copies = B.no_copies;
     }
     return *this;
+}
+
+// Display function implementation
+void Book::display()
+{
+    std::cout << "Book ID: " << id << "\n";
+    std::cout << "Title: " << title << "\n";
+    std::cout << "Author: " << author << "\n";
+    std::cout << "Subject: " << subject << "\n";
+    std::cout << "Number of Copies: " << no_copies << "\n";
 }
 
 #endif

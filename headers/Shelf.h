@@ -22,6 +22,7 @@ public:
     int getId();
     LinkedList<Book> &getBooks(); // Return reference to books
     int getNumBooks();            // Get the number of books
+    void display();               // Display shelf details
 };
 
 Shelf::Shelf(int Id) : id(Id) {}
@@ -33,5 +34,16 @@ void Shelf::addBook(const Book &book) { books.add(book); }
 int Shelf::getId() { return id; }
 LinkedList<Book> &Shelf::getBooks() { return books; }
 int Shelf::getNumBooks() { return books.getSize(); }
+
+void Shelf::display()
+{
+    std::cout << "Shelf ID: " << id << "\n";
+    std::cout << "Books on Shelf:\n";
+    for (int i = 0; i < books.getSize(); i++) {
+        std::cout << "  ";
+        books[i].display();
+        std::cout << "\n";
+    }
+}
 
 #endif

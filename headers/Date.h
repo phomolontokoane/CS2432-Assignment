@@ -1,6 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
 
+#include <iostream>
+
 class Date {
     private:
         int year, month, day;
@@ -16,6 +18,9 @@ class Date {
         void setYear(int y);
         void setMonth(int m);
         void setDay(int d);
+
+        // Display function
+        void display();
 };
 
 Date::Date(int year, int month, int day)
@@ -33,5 +38,12 @@ int Date::getDay() { return day; }
 void Date::setYear(int y) { year = y; }
 void Date::setMonth(int m) { month = m; }
 void Date::setDay(int d) { day = d; }
+
+void Date::display()
+{
+    std::cout << year << "-" 
+              << (month < 10 ? "0" : "") << month << "-" 
+              << (day < 10 ? "0" : "") << day << "\n";
+}
 
 #endif

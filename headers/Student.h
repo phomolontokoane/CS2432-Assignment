@@ -21,6 +21,8 @@ public:
     void setFaculty(string);
 
     Student& operator=(Student&);
+
+    void display();
 };
 
 Student::Student(string Name, string Surname, int id, string Faculty)
@@ -47,6 +49,13 @@ Student& Student::operator=(Student &S)
         faculty = S.faculty;
     }
     return *this;
+}
+
+void Student::display()
+{
+    std::cout << "Name: " << getName() << " " << getSurname() << "\n";
+    std::cout << "Student Number: " << std_no << "\n";
+    std::cout << "Faculty: " << faculty << "\n";
 }
 
 #endif
