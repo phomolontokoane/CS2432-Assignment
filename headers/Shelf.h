@@ -23,6 +23,7 @@ public:
     LinkedList<Book> &getBooks(); // Return reference to books
     int getNumBooks();            // Get the number of books
     void display();               // Display shelf details
+    
 };
 
 Shelf::Shelf(int Id) : id(Id) {}

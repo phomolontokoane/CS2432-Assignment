@@ -6,6 +6,7 @@
 #include "Book.h"
 #include "Date.h"
 
+
 class Record
 {
 private:
@@ -37,6 +38,7 @@ public:
 
     // Display function
     void display();
+
 };
 
 // Constructor implementation

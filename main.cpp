@@ -1,5 +1,7 @@
 #include <iostream>
 #include "headers/System.h"
+#include "headers/Floor.h"
+#include "headers/Record.h"
 
 using namespace std;
 
@@ -43,6 +45,7 @@ int main(int argc, char const *argv[])
         }
     } while (choice != 0);
 
+    system.saveData();
     cout << "===========================================================================" << "\n\n";
     return 0;
 }
@@ -59,11 +62,12 @@ void FloorSystem(System& system) {
         cout << "3. Display Books in a shelf" << '\n';
         cout << "4. Create Floor" << '\n';
         cout << "5. Create shelf" << '\n';
-        cout << "6. Create book" << '\n';
+        cout << "6. Create book" << "\n\n";
 
         cout << "Enter choice: ";
         cin >> choice;
 
+        cout << "\n";
         switch (choice)
         {
         case 0:
@@ -90,6 +94,7 @@ void FloorSystem(System& system) {
             cout << "Error: please enter integer between 0 and 6"<< '\n';
             break;
         }
+        cout << "\n";
     } while (choice != 0);  
 }
 
@@ -103,7 +108,7 @@ void RecordSystem(System& system) {
         cout << "1. Display All Records" << '\n';
         cout << "2. Display Borrowed Books" << '\n';
         cout << "3. Display Returned Books" << '\n';
-        cout << "4. Handle Book Return" << '\n';
+        cout << "4. Handle Book Return" << "\n\n";
 
         cout << "Enter choice: ";
         cin >> choice;
@@ -128,5 +133,6 @@ void RecordSystem(System& system) {
             cout << "Error: please enter an integer between 0 and 4" << '\n';
             break;
         }
+        cout << "\n";
     } while (choice != 0);
 }

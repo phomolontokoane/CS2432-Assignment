@@ -15,6 +15,7 @@ private:
 
 public:
     Floor(int, Manager &);
+    Floor(const Floor &); // Copy constructor
     ~Floor();
 
     int getFloorNum();
@@ -28,18 +29,29 @@ public:
     void display(); // Display floor details
 };
 
+// Constructor
 Floor::Floor(int id, Manager &M) : f_num(id), manager(M) {}
+
+// Copy Constructor
+Floor::Floor(const Floor &other) : f_num(other.f_num), manager(other.manager), shelves(other.shelves) {}
+
+// Destructor
 Floor::~Floor() {}
 
+// Getters
 int Floor::getFloorNum() { return f_num; }
 int Floor::getNumShelves() { return shelves.getSize(); }
 LinkedList<Shelf> &Floor::getShelves() { return shelves; }
 Manager Floor::getManager() { return manager; }
 
+// Setters
 void Floor::setFloorNum(int id) { f_num = id; }
 void Floor::setManager(Manager &M) { manager = M; }
+
+// Add a shelf
 void Floor::addShelf(const Shelf &shelf) { shelves.add(shelf); }
 
+// Display floor details
 void Floor::display()
 {
     std::cout << "Floor Number: " << f_num << "\n";

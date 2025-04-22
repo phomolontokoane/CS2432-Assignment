@@ -20,10 +20,17 @@ private:
     LinkedList<Floor> floors;
     LinkedList<Record> records;
 
+    // Helper functions for loading data
+    void loadManagers(LinkedList<Manager> &managers);
+    void loadFloors(LinkedList<Manager> &managers);
+    void loadShelves();
+    void loadBooks();
+    void loadRecords();
+
 public:
     // Methods
 
-    // Floor sytstem
+    // Floor system
     void displayFloors();
     void displayShelves();
     void displayBooks(); // Of A shelf
@@ -39,7 +46,8 @@ public:
 
     void handleReturnBook();
 
-    void loadData();
+    void loadData(); // Main function to load all data
+    void saveData(); // Main function to save all data
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -47,9 +55,10 @@ public:
 void System::displayFloors()
 {
     cout << "Floors: " << "\n";
-    
-    if (floors.getSize() <= 0) {
-        cout << "There are no floors" << "\n\n";
+
+    if (floors.getSize() <= 0)
+    {
+        cout << "There are no floors" << "\n";
         return;
     }
 
@@ -57,7 +66,6 @@ void System::displayFloors()
     {
         cout << "Floor " << floors[i].getFloorNum() << '\n';
     }
-    
 }
 
 void System::displayShelves()
@@ -67,21 +75,25 @@ void System::displayShelves()
     cin >> floorNum;
 
     // Find the floor
-    Floor* floor = nullptr;
-    for (int i = 0; i < floors.getSize(); i++) {
-        if (floors[i].getFloorNum() == floorNum) {
+    Floor *floor = nullptr;
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        if (floors[i].getFloorNum() == floorNum)
+        {
             floor = &floors[i];
             break;
         }
     }
 
-    if (floor == nullptr) {
+    if (floor == nullptr)
+    {
         cout << "Floor not found.\n";
         return;
     }
 
     cout << "Shelves on Floor " << floorNum << ":\n";
-    for (int i = 0; i < floor->getNumShelves(); i++) {
+    for (int i = 0; i < floor->getNumShelves(); i++)
+    {
         floor->getShelves()[i].display();
         cout << "-------------------------\n";
     }
@@ -96,35 +108,42 @@ void System::displayBooks()
     cin >> shelfId;
 
     // Find the floor
-    Floor* floor = nullptr;
-    for (int i = 0; i < floors.getSize(); i++) {
-        if (floors[i].getFloorNum() == floorNum) {
+    Floor *floor = nullptr;
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        if (floors[i].getFloorNum() == floorNum)
+        {
             floor = &floors[i];
             break;
         }
     }
 
-    if (floor == nullptr) {
+    if (floor == nullptr)
+    {
         cout << "Floor not found.\n";
         return;
     }
 
     // Find the shelf
-    Shelf* shelf = nullptr;
-    for (int i = 0; i < floor->getNumShelves(); i++) {
-        if (floor->getShelves()[i].getId() == shelfId) {
+    Shelf *shelf = nullptr;
+    for (int i = 0; i < floor->getNumShelves(); i++)
+    {
+        if (floor->getShelves()[i].getId() == shelfId)
+        {
             shelf = &floor->getShelves()[i];
             break;
         }
     }
 
-    if (shelf == nullptr) {
+    if (shelf == nullptr)
+    {
         cout << "Shelf not found.\n";
         return;
     }
 
     cout << "Books on Shelf " << shelfId << ":\n";
-    for (int i = 0; i < shelf->getNumBooks(); i++) {
+    for (int i = 0; i < shelf->getNumBooks(); i++)
+    {
         shelf->getBooks()[i].display();
         cout << "-------------------------\n";
     }
@@ -164,15 +183,18 @@ void System::createShelf()
     cin >> shelfId;
 
     // Find the floor
-    Floor* floor = nullptr;
-    for (int i = 0; i < floors.getSize(); i++) {
-        if (floors[i].getFloorNum() == floorNum) {
+    Floor *floor = nullptr;
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        if (floors[i].getFloorNum() == floorNum)
+        {
             floor = &floors[i];
             break;
         }
     }
 
-    if (floor == nullptr) {
+    if (floor == nullptr)
+    {
         cout << "Floor not found.\n";
         return;
     }
@@ -194,29 +216,35 @@ void System::createBook()
     cin >> shelfId;
 
     // Find the floor
-    Floor* floor = nullptr;
-    for (int i = 0; i < floors.getSize(); i++) {
-        if (floors[i].getFloorNum() == floorNum) {
+    Floor *floor = nullptr;
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        if (floors[i].getFloorNum() == floorNum)
+        {
             floor = &floors[i];
             break;
         }
     }
 
-    if (floor == nullptr) {
+    if (floor == nullptr)
+    {
         cout << "Floor not found.\n";
         return;
     }
 
     // Find the shelf
-    Shelf* shelf = nullptr;
-    for (int i = 0; i < floor->getNumShelves(); i++) {
-        if (floor->getShelves()[i].getId() == shelfId) {
+    Shelf *shelf = nullptr;
+    for (int i = 0; i < floor->getNumShelves(); i++)
+    {
+        if (floor->getShelves()[i].getId() == shelfId)
+        {
             shelf = &floor->getShelves()[i];
             break;
         }
     }
 
-    if (shelf == nullptr) {
+    if (shelf == nullptr)
+    {
         cout << "Shelf not found.\n";
         return;
     }
@@ -243,13 +271,15 @@ void System::createBook()
 
 void System::displayRecords()
 {
-    if (records.getSize() <= 0) {
+    if (records.getSize() <= 0)
+    {
         cout << "No records available.\n";
         return;
     }
 
     cout << "All Records:\n";
-    for (int i = 0; i < records.getSize(); i++) {
+    for (int i = 0; i < records.getSize(); i++)
+    {
         records[i].display();
         cout << "-------------------------\n";
     }
@@ -259,16 +289,19 @@ void System::displayBorrowedBooks()
 {
     bool found = false;
     cout << "Borrowed Books:\n";
-    for (int i = 0; i < records.getSize(); i++) {
+    for (int i = 0; i < records.getSize(); i++)
+    {
         // Assuming the `Record` class has a method `isReturned()` to check if the book is returned
-        if (!records[i].isReturned()) {
+        if (!records[i].isReturned())
+        {
             records[i].display();
             cout << "-------------------------\n";
             found = true;
         }
     }
 
-    if (!found) {
+    if (!found)
+    {
         cout << "No borrowed books found.\n";
     }
 }
@@ -277,16 +310,19 @@ void System::displayReturnedBooks()
 {
     bool found = false;
     cout << "Returned Books:\n";
-    for (int i = 0; i < records.getSize(); i++) {
+    for (int i = 0; i < records.getSize(); i++)
+    {
         // Assuming the `Record` class has a method `isReturned()` to check if the book is returned
-        if (records[i].isReturned()) {
+        if (records[i].isReturned())
+        {
             records[i].display();
             cout << "-------------------------\n";
             found = true;
         }
     }
 
-    if (!found) {
+    if (!found)
+    {
         cout << "No returned books found.\n";
     }
 }
@@ -297,7 +333,8 @@ void System::handleReturnBook()
     cout << "Enter the record index of the book to return: ";
     cin >> recordIndex;
 
-    if (recordIndex < 0 || recordIndex >= records.getSize()) {
+    if (recordIndex < 0 || recordIndex >= records.getSize())
+    {
         cout << "Invalid record index.\n";
         return;
     }
@@ -308,23 +345,15 @@ void System::handleReturnBook()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-void System::loadData()
-{
-    // Open data files
-    ifstream FloorsData("data/floors.txt");
-    ifstream ManagersData("data/managers.txt");
-    ifstream ShelvesData("data/shelves.txt");
-    ifstream BooksData("data/books.txt");
-    ifstream RecordsData("data/records.txt");
 
-    // Check if all necessary data files were loaded
-    if (!FloorsData || !ManagersData || !ShelvesData || !BooksData || !RecordsData)
+void System::loadManagers(LinkedList<Manager> &managers)
+{
+    ifstream ManagersData("data/managers.txt");
+    if (!ManagersData)
     {
-        throw std::runtime_error("One or more data files not found");
+        throw runtime_error("Managers data file not found");
     }
 
-    // Load Managers
-    LinkedList<Manager> managers;
     string record;
     while (getline(ManagersData, record))
     {
@@ -339,7 +368,18 @@ void System::loadData()
         managers.add(manager);
     }
 
-    // Load Floors
+    ManagersData.close();
+}
+
+void System::loadFloors(LinkedList<Manager> &managers)
+{
+    ifstream FloorsData("data/floors.txt");
+    if (!FloorsData)
+    {
+        throw runtime_error("Floors data file not found");
+    }
+
+    string record;
     while (getline(FloorsData, record))
     {
         stringstream ss(record);
@@ -349,7 +389,7 @@ void System::loadData()
         getline(ss, shelvesData, '_');
 
         // Find the manager by ID
-        Manager *manager = NULL;
+        Manager *manager = nullptr;
         for (int i = 0; i < managers.getSize(); i++)
         {
             if (managers[i].getId() == managerId)
@@ -359,9 +399,9 @@ void System::loadData()
             }
         }
 
-        if (manager == NULL)
+        if (manager == nullptr)
         {
-            throw std::runtime_error("Manager not found for floor");
+            throw runtime_error("Manager not found for floor");
         }
 
         // Create the floor
@@ -377,9 +417,21 @@ void System::loadData()
         }
 
         floors.add(floor);
+        cout << "Good" << '\n';
     }
 
-    // Load Shelves
+    FloorsData.close();
+}
+
+void System::loadShelves()
+{
+    ifstream ShelvesData("data/shelves.txt");
+    if (!ShelvesData)
+    {
+        throw runtime_error("Shelves data file not found");
+    }
+
+    string record;
     while (getline(ShelvesData, record))
     {
         stringstream ss(record);
@@ -388,7 +440,7 @@ void System::loadData()
         getline(ss, booksData, '_');
 
         // Find the shelf by ID
-        Shelf *shelf = NULL;
+        Shelf *shelf = nullptr;
         for (int i = 0; i < floors.getSize(); i++)
         {
             Floor &floor = floors[i];
@@ -402,9 +454,9 @@ void System::loadData()
             }
         }
 
-        if (shelf == NULL)
+        if (shelf == nullptr)
         {
-            throw std::runtime_error("Shelf not found for books");
+            throw runtime_error("Shelf not found for books");
         }
 
         // Parse and add books to the shelf
@@ -417,7 +469,18 @@ void System::loadData()
         }
     }
 
-    // Load Books
+    ShelvesData.close();
+}
+
+void System::loadBooks()
+{
+    ifstream BooksData("data/books.txt");
+    if (!BooksData)
+    {
+        throw runtime_error("Books data file not found");
+    }
+
+    string record;
     while (getline(BooksData, record))
     {
         stringstream ss(record);
@@ -444,14 +507,24 @@ void System::loadData()
                         book.setAuthor(author);
                         book.setSubject(subject);
                         book.setCopies(stoi(copies));
-                        book.display();
                     }
                 }
             }
         }
     }
 
-    // Load Records
+    BooksData.close();
+}
+
+void System::loadRecords()
+{
+    ifstream RecordsData("data/records.txt");
+    if (!RecordsData)
+    {
+        throw runtime_error("Records data file not found");
+    }
+
+    string record;
     while (getline(RecordsData, record))
     {
         stringstream ss(record);
@@ -476,7 +549,7 @@ void System::loadData()
         Student student(name, surname, stoi(stdNo), faculty);
 
         // Find the book
-        Book *book = NULL;
+        Book *book = nullptr;
         for (int i = 0; i < floors.getSize(); i++)
         {
             Floor &floor = floors[i];
@@ -494,20 +567,130 @@ void System::loadData()
             }
         }
 
-        if (book == NULL)
+        if (book == nullptr)
         {
-            throw std::runtime_error("Book not found for record");
+            throw runtime_error("Book not found for record");
         }
 
         Record record(student, recordDate, *book, stoi(floorNum), stoi(shelfNum));
         records.add(record);
     }
 
-    // Close files
-    FloorsData.close();
+    RecordsData.close();
+}
+
+void System::loadData()
+{
+    LinkedList<Manager> managers;
+
+    // Load data in sequence
+    loadManagers(managers);
+    loadFloors(managers);
+    loadShelves();
+    loadBooks();
+    loadRecords();
+}
+
+void System::saveData()
+{
+    // Save Managers
+    ofstream ManagersData("data/managers.txt");
+    if (!ManagersData)
+    {
+        throw runtime_error("Failed to open managers data file for writing");
+    }
+
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        Manager manager = floors[i].getManager();
+        ManagersData << manager.getId() << "_" << manager.getRank() << "_" << manager.getName() << "-" << manager.getSurname() << "\n";
+    }
     ManagersData.close();
+
+    // Save Floors
+    ofstream FloorsData("data/floors.txt");
+    if (!FloorsData)
+    {
+        throw runtime_error("Failed to open floors data file for writing");
+    }
+
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        Floor &floor = floors[i];
+        FloorsData << floor.getFloorNum() << "_" << floor.getManager().getId() << "_";
+
+        for (int j = 0; j < floor.getNumShelves(); j++)
+        {
+            FloorsData << floor.getShelves()[j].getId();
+            if (j < floor.getNumShelves() - 1)
+                FloorsData << ",";
+        }
+        FloorsData << "\n";
+    }
+    FloorsData.close();
+
+    // Save Shelves
+    ofstream ShelvesData("data/shelves.txt");
+    if (!ShelvesData)
+    {
+        throw runtime_error("Failed to open shelves data file for writing");
+    }
+
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        Floor &floor = floors[i];
+        for (int j = 0; j < floor.getNumShelves(); j++)
+        {
+            Shelf &shelf = floor.getShelves()[j];
+            ShelvesData << shelf.getId() << "_";
+
+            for (int k = 0; k < shelf.getNumBooks(); k++)
+            {
+                ShelvesData << shelf.getBooks()[k].getId();
+                if (k < shelf.getNumBooks() - 1)
+                    ShelvesData << ",";
+            }
+            ShelvesData << "\n";
+        }
+    }
     ShelvesData.close();
+
+    // Save Books
+    ofstream BooksData("data/books.txt");
+    if (!BooksData)
+    {
+        throw runtime_error("Failed to open books data file for writing");
+    }
+
+    for (int i = 0; i < floors.getSize(); i++)
+    {
+        Floor &floor = floors[i];
+        for (int j = 0; j < floor.getNumShelves(); j++)
+        {
+            Shelf &shelf = floor.getShelves()[j];
+            for (int k = 0; k < shelf.getNumBooks(); k++)
+            {
+                Book &book = shelf.getBooks()[k];
+                BooksData << book.getId() << "_" << book.getTitle() << "_" << book.getAuthor() << "_" << book.getSubjuct() << "_" << book.getCopies() << "\n";
+            }
+        }
+    }
     BooksData.close();
+
+    // Save Records
+    ofstream RecordsData("data/records.txt");
+    if (!RecordsData)
+    {
+        throw runtime_error("Failed to open records data file for writing");
+    }
+
+    for (int i = 0; i < records.getSize(); i++)
+    {
+        Record &record = records[i];
+        RecordsData << record.getStudent().getName() << "+" << record.getStudent().getSurname() << "+" << record.getStudent().getStdNo() << "+" << record.getStudent().getFaculty() << "_";
+        RecordsData << record.getDate().getYear() << "-" << record.getDate().getMonth() << "-" << record.getDate().getDay() << "_";
+        RecordsData << record.getFloorNum() << "_" << record.getShelfNum() << "_" << record.getBook().getId() << "\n";
+    }
     RecordsData.close();
 }
 
