@@ -11,7 +11,7 @@ void RecordSystem(System&);
 int main(int argc, char const *argv[])
 {
     System system;
-    // system.loadData();
+    system.loadData();
 
     int choice;
     cout << "==========================Library system==================================" << "\n\n";
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
         }
     } while (choice != 0);
 
-    system.saveData();
+    system.saveData(); // save data
     cout << "===========================================================================" << "\n\n";
     return 0;
 }
