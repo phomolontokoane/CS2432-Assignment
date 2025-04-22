@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void FloorSystem(System&);
+void InventorySystem(System&);
 void RecordSystem(System&);
 
 int main(int argc, char const *argv[])
@@ -19,8 +19,8 @@ int main(int argc, char const *argv[])
     do
     {
         cout << "0. Stop Program" << endl;
-        cout << "1. Floors" << endl;
-        cout << "2. Records" << endl
+        cout << "1. Enter Inventory System" << endl;
+        cout << "2. Enter Records System" << endl
              << endl;
         
         cout << "Enter choice(0-2): ";
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
                  << "Terminating programm" << endl;
             break;
         case 1:
-            FloorSystem(system);
+            InventorySystem(system);
             break;
         case 2:
             RecordSystem(system);
@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void FloorSystem(System& system) {
+void InventorySystem(System& system) {
     cout << "=============================Floor system==================================" << "\n\n";
     
     int choice;

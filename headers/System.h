@@ -296,10 +296,11 @@ void System::displayRecords()
     }
 
     cout << "All Records:\n";
+    cout << "--------------------------------" << "\n";
     for (int i = 0; i < records.getSize(); i++)
     {
-        records[i].display();
-        cout << "-------------------------\n";
+        cout << "Record " << i << '\n';
+        cout << "--------------------------------" << "\n";
     }
 }
 
@@ -348,7 +349,7 @@ void System::displayReturnedBooks()
 void System::handleReturnBook()
 {
     int recordIndex;
-    cout << "Enter the record index of the book to return: ";
+    cout << "Enter the record number: ";
     cin >> recordIndex;
 
     if (recordIndex < 0 || recordIndex >= records.getSize())
@@ -608,7 +609,7 @@ void System::loadRecords()
 
         // Create the record
         Record recordObj(student, recordDate, book, stoi(floorNum), stoi(shelfNum));
-        if (isReturned == "True")
+        if (isReturned == "true")
         {
             recordObj.markAsReturned();
         }
