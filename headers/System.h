@@ -46,6 +46,7 @@ public:
     void displayRecords();
     void displayBorrowedBooks();
     void displayReturnedBooks();
+    void addRecord();
 
     void handleReturnBook();
 
@@ -344,6 +345,71 @@ void System::displayReturnedBooks()
     {
         cout << "No returned books found.\n";
     }
+}
+
+void System::addRecord()
+{
+    string name, surname, faculty;
+    int stdNo;
+
+    // Get student details
+    cout << "Student details: " << "\n";
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Enter surname: ";
+    cin >> surname;
+    cout << "Enter student number: ";
+    cin >> stdNo;
+    cout << "Enter faculty: ";
+    cin >> faculty;
+
+    // Get date details
+    int year, month, day;
+    cout << "Date details: " << "\n";
+    cout << "Enter day: ";
+    cin >> day;
+    cout << "Enter month: ";
+    cin >> month;
+    cout << "Enter year: ";
+    cin >> year;
+
+    // Create a Date object
+    Date recordDate(year, month, day);
+
+    // Get floor and shelf details
+    int floorNum, shelfNum;
+    cout << "Enter floor number: ";
+    cin >> floorNum;
+    cout << "Enter shelf number: ";
+    cin >> shelfNum;
+
+    // Get book details
+    int bookId, no_copies;
+    string title, author, subject;
+
+    cout << "Enter bookId: ";
+    cin >> bookId;
+    cout << "Enter title: ";
+    cin >> title;
+    cout << "Enter author: ";
+    cin >> author;
+    cout << "Enter subject: ";
+    cin >> subject;
+    cout << "Enter no_copies: ";
+    cin >> no_copies;
+
+    Book book(bookId, title, author, subject, no_copies);
+
+    // Create a Student object
+    Student student(name, surname, stdNo, faculty);
+
+    // Create a Record object
+    Record newRecord(student, recordDate, book, floorNum, shelfNum);
+
+    // Add the record to the records list
+    records.add(newRecord);
+
+    cout << "Record added successfully.\n";
 }
 
 void System::handleReturnBook()

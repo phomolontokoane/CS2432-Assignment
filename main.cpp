@@ -108,7 +108,8 @@ void RecordSystem(System& system) {
         cout << "1. Display All Records" << '\n';
         cout << "2. Display Borrowed Books" << '\n';
         cout << "3. Display Returned Books" << '\n';
-        cout << "4. Handle Book Return" << "\n\n";
+        cout << "4. Handle Book Return" << "\n";
+        cout << "5. Add Record" << "\n\n";
 
         cout << "Enter choice: ";
         cin >> choice;
@@ -128,6 +129,9 @@ void RecordSystem(System& system) {
             break;
         case 4:
             system.handleReturnBook();
+            break;
+        case 5:
+            system.addRecord();
             break;
         default:
             cout << "Error: please enter an integer between 0 and 4" << '\n';
