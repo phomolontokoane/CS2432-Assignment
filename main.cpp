@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
         }
     } while (choice != 0);
 
-    // system.saveData(); // save data
+    system.saveData(); // save data
     cout << "===========================================================================" << "\n\n";
     return 0;
 }
