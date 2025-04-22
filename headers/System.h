@@ -528,28 +528,50 @@ void System::loadRecords()
     while (getline(RecordsData, record))
     {
         stringstream ss(record);
-        string name, surname, stdNo, faculty, date, floorNum, shelfNum, bookId;
+        string name, surname, stdNo, faculty, date, floorNum, shelfNum, bookId, bookTitle, bookAuthor, bookSubject, bookCopies, isReturned;
+        
+        
+        // Parse student details
         getline(ss, name, '+');
         getline(ss, surname, '+');
         getline(ss, stdNo, '+');
         getline(ss, faculty, '_');
-        getline(ss, date, '_');
-        getline(ss, floorNum, '_');
-        getline(ss, shelfNum, '_');
-        getline(ss, bookId);
-
+        
         // Parse date
+        getline(ss, date, '_');
         stringstream dateStream(date);
         string year, month, day;
         getline(dateStream, year, '-');
         getline(dateStream, month, '-');
         getline(dateStream, day);
+        
+        // Parse floor and shelf numbers
+        getline(ss, floorNum, '_');
+        getline(ss, shelfNum, '_');
+        
+        // Parse book details
+        getline(ss, bookId, '_');
+        getline(ss, bookTitle, '_');
+        getline(ss, bookAuthor, '_');
+        getline(ss, bookSubject, '_');
+        getline(ss, bookCopies, '_');
+        
+        // Parse return status
+        getline(ss, isReturned);
 
+        cout << bookId << '\n';
+        cout << bookTitle << '\n';
+        cout << bookAuthor << '\n';
+        cout << bookSubject << '\n';
+        cout << bookCopies << '\n';
+        
+        // Create objects
         Date recordDate(stoi(year), stoi(month), stoi(day));
         Student student(name, surname, stoi(stdNo), faculty);
-
-        // Find the book
-        Book *book = nullptr;
+        Book book(stoi(bookId), bookTitle, bookAuthor, bookSubject, stoi(bookCopies));
+        
+        // Find the book in the system
+        Book *systemBook = nullptr;
         for (int i = 0; i < floors.getSize(); i++)
         {
             Floor &floor = floors[i];
@@ -558,22 +580,28 @@ void System::loadRecords()
                 Shelf &shelf = floor.getShelves()[j];
                 for (int k = 0; k < shelf.getNumBooks(); k++)
                 {
-                    if (shelf.getBooks()[k].getId() == stoi(bookId))
+                    if (shelf.getBooks()[k].getId() == book.getId())
                     {
-                        book = &shelf.getBooks()[k];
+                        systemBook = &shelf.getBooks()[k];
                         break;
                     }
                 }
             }
         }
 
-        if (book == nullptr)
+        if (systemBook == nullptr)
         {
-            throw runtime_error("Book not found for record");
+            // throw runtime_error("Book not found for record");
         }
 
-        Record record(student, recordDate, *book, stoi(floorNum), stoi(shelfNum));
-        records.add(record);
+        // Create the record
+        Record recordObj(student, recordDate, book, stoi(floorNum), stoi(shelfNum));
+        if (isReturned == "True")
+        {
+            recordObj.markAsReturned();
+        }
+
+        records.add(recordObj);
     }
 
     RecordsData.close();
@@ -584,10 +612,10 @@ void System::loadData()
     LinkedList<Manager> managers;
 
     // Load data in sequence
-    loadManagers(managers);
-    loadFloors(managers);
-    loadShelves();
-    loadBooks();
+    // loadManagers(managers);
+    // loadFloors(managers);
+    // loadShelves();
+    // loadBooks();
     loadRecords();
 }
 
