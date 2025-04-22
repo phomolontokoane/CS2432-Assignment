@@ -5,6 +5,7 @@
 #include "Student.h"
 #include "Book.h"
 #include "Date.h"
+#include "System.h"
 
 
 class Record
@@ -39,6 +40,7 @@ public:
     // Display function
     void display();
 
+    friend class System;
 };
 
 // Constructor implementation

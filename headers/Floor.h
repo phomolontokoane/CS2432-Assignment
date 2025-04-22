@@ -5,6 +5,7 @@
 #include "Shelf.h"
 #include "Manager.h"
 #include "LinkedList.h"
+#include "System.h"
 
 class Floor
 {
@@ -27,6 +28,8 @@ public:
     void setManager(Manager &);
     void addShelf(const Shelf &); // Add a shelf to the floor
     void display(); // Display floor details
+
+    friend class System;
 };
 
 // Constructor

@@ -29,6 +29,9 @@ private:
 
 public:
     // Methods
+    static int numItems(Floor&);
+    static int numItems(Shelf&);
+    static int numItems(Book&);
 
     // Floor system
     void displayFloors();
@@ -51,6 +54,21 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
+
+int System::numItems(Floor &floor)
+{
+    return floor.shelves.getSize(); // Access private member `shelves` directly
+}
+
+int System::numItems(Shelf &shelf)
+{
+    return shelf.books.getSize(); // Access private member `books` directly
+}
+
+int System::numItems(Book &book)
+{
+    return book.no_copies; // Access private member `no_copies` directly
+}
 
 void System::displayFloors()
 {
@@ -558,12 +576,6 @@ void System::loadRecords()
         
         // Parse return status
         getline(ss, isReturned);
-
-        cout << bookId << '\n';
-        cout << bookTitle << '\n';
-        cout << bookAuthor << '\n';
-        cout << bookSubject << '\n';
-        cout << bookCopies << '\n';
         
         // Create objects
         Date recordDate(stoi(year), stoi(month), stoi(day));
@@ -716,8 +728,10 @@ void System::saveData()
     {
         Record &record = records[i];
         RecordsData << record.getStudent().getName() << "+" << record.getStudent().getSurname() << "+" << record.getStudent().getStdNo() << "+" << record.getStudent().getFaculty() << "_";
-        RecordsData << record.getDate().getYear() << "-" << record.getDate().getMonth() << "-" << record.getDate().getDay() << "_";
-        RecordsData << record.getFloorNum() << "_" << record.getShelfNum() << "_" << record.getBook().getId() << "\n";
+        RecordsData << record.date.getDay() << "-" << record.date.getMonth() << "-" << record.date.getYear() << "_";
+        RecordsData << record.getFloorNum() << "_" << record.getShelfNum() << "_" << record.getBook().getId() << "_";
+        RecordsData << record.getBook().getTitle() << "_" << record.getBook().getAuthor() << "_" << record.getBook().getSubjuct() << "_" << record.getBook().getCopies() << "_";
+        RecordsData << (record.isReturned() ? "true" : "false") << "\n";
     }
     RecordsData.close();
 }

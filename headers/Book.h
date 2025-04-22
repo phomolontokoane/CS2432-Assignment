@@ -2,6 +2,7 @@
 #define BOOK_H
 
 #include <iostream>
+#include "System.h"
 using std::string;
 
 class Book
@@ -37,6 +38,8 @@ public:
 
     // Display function
     void display();
+
+    friend class System;
 };
 
 // Constructor implementation

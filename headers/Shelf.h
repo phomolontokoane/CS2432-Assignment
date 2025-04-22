@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include "Book.h"
 #include "LinkedList.h"
+#include "System.h"
+
 
 class Shelf
 {
@@ -24,6 +26,7 @@ public:
     int getNumBooks();            // Get the number of books
     void display();               // Display shelf details
     
+    friend class System;
 };
 
 Shelf::Shelf(int Id) : id(Id) {}
